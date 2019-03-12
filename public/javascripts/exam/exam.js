@@ -16,7 +16,7 @@
 						header :{"content-type":"application/json"},
 						data :{ exam_id:exam_ids,question_id:questionid,answer:studentans}
 					}).then(function(response){
-						console.log("++++++ response +++++",response);
+						// console.log("++++++ response +++++",response);
 					},function(error){
 
 					})
@@ -30,7 +30,7 @@
 					header :{"content-type":"application/json"},
 					data :{ exam_id:exam_ids}
 				}).then(function(response){
-					console.log("++++++ fetch_result +++++",response.data.data[0].false_answer);
+					// console.log("++++++ fetch_result +++++",response.data.data[0].false_answer);
 					$scope.true_answer = response.data.data[0].true_answer
 					$scope.total_question = response.data.data[0].questions.length
 					$scope.show_test  = false
@@ -50,7 +50,7 @@
 
 
 
-				console.log("+++++++ exam controller ++++++++++");
+				// console.log("+++++++ exam controller ++++++++++");
 				var start_test = function(){
 					var user_id =$cookies.get('user')
 
@@ -60,7 +60,7 @@
 						header :{"content-type":"application/json"},
 						data :{ user_id:user_id}
 					}).then(function(response){
-						console.log("++++++ response +++++",response.data.remainigtime);
+						// console.log("++++++ response +++++",response.data.remainigtime);
 						if (response.data.remainigtime>0) {
 							$scope.countDown = response.data.remainigtime;
 						}else if (response.data.remainigtime <= 0 ) {
@@ -88,7 +88,7 @@
 									header :{"content-type":"application/json"},
 									data :{ exam_id:exam_ids}
 								}).then(function(response){
-									console.log("++++++ response +++++",response);
+									// console.log("++++++ response +++++",response);
 									$scope.fetch_result()
 									$interval.cancel(timer);
 
@@ -99,7 +99,7 @@
 
 		var timer = $interval(function(){
 				$scope.countDown--;
-				console.log($scope.countDown)
+				// console.log($scope.countDown)
 				if ($scope.countDown === 0) {
 					$scope.finished_exam()
 					$interval.cancel(timer);
