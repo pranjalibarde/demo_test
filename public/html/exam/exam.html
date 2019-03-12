@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Angular Js</title>
+      <meta charset="UTF-8">
+      <meta name="description" content="Free Web tutorials">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" href="css/angular-material.min.css">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/css/mdb.min.css">
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+   </head>
+   <body  ng-cloak>
+      <section class="col-12 p-0" ng-show="show_test">
+         <div class="col-12 p-0 border-bottom">
+            <div class="col-12 d-flex p-2">
+               <div class="d-flex align-items-center">
+                  <img src="images/no_profile.jpg" class="border rounded-circle" style="width: 1.2cm;height: 1.2cm;">
+                  <h4 class="mb-0 ml-2">{{student_name}}</h4>
+               </div>
+               <div class="ml-auto">
+                  <p class="m-0">Total Question: 10</p>
+                  <p class="m-0">Current Question: 2</p>
+               </div>
+            </div>
+         </div>
+         <div class="col-8 p-0 mx-auto my-2 border">
+         <div class="panel panel-default">
+         <div class="panel-heading bg-primary panel-heading-custom p-3 d-flex align-items-center">
+            <h4 class="text-white m-0">Start Test</h4>
+            <h5 class="text-white ml-auto mb-0">Time: {{countDown}}</h5>
+         </div>
+         <div class="panel-body">
+         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default" id="ques1">
+
+               <div class="col-12 px-2 py-2 border-bottom" ng-repeat="question in exam_questions">
+                  <div class="panel-heading online-test" role="tab" id="">
+                     <h4 class="panel-title">
+                        <a class="d-flex">
+                           <b>Ques {{$index+1}} :</b>
+                           <div class="ml-2">{{question.question}}?</div>
+                        </a>
+                     </h4>
+                  </div>
+                  <div class="panel-collapse online-test-options">
+                     <div class="panel-body" ng-show="!question.single">
+                        <div class="col-lg-12">
+                           <div class="input-group">
+                              <input type="radio" name="radio1+{{$index}}" ng-model="question.student_answer" ng-change="store_answer(question._id,question.student_answer)" value="a">(A) {{question.option1}}
+                           </div>
+                           <!-- /input-group -->
+                        </div>
+                        <div class="col-lg-12">
+                           <div class="input-group">
+                              <input type="radio" name="radio1+{{$index}}" ng-model="question.student_answer" ng-change="store_answer(question._id,question.student_answer)" value="b">(B) {{question.option2}}
+                           </div>
+                           <!-- /input-group -->
+                        </div>
+                        <div class="col-lg-12">
+                           <div class="input-group">
+                              <input type="radio" name="radio1+{{$index}}" ng-model="question.student_answer" ng-change="store_answer(question._id,question.student_answer)" value="c">(C) {{question.option3}}
+                           </div>
+                           <!-- /input-group -->
+                        </div>
+                        <div class="col-lg-12">
+                           <div class="input-group">
+                              <input type="radio" name="radio1+{{$index}}" ng-model="question.student_answer" ng-change="store_answer(question._id,question.student_answer)" value="d">(D) {{question.option4}}
+                           </div>
+                           <!-- /input-group -->
+                        </div>
+                     </div>
+                     <div class="panel-body" ng-show="question.single">
+                        <div class="col-lg-12">
+                           <div class="input-group">
+                              <input type="text" name="radio1" placeholder="Write Your here with lowercase" ng-model="question.student_answer" ng-change="store_answer(question._id,question.student_answer)">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <button type="submit" class="btn btn-primary online-test-btn ml-auto d-table" ng-click="finished_exam()">Submit  Answer</button>
+         </div>
+
+      </section>
+      <div ng-show="!show_test">
+        <h1>your result is {{true_answer}}/{{total_question}}</h1>
+          if you refresh the page then exam is restarted
+
+        <button type="submit" class="btn btn-primary online-test-btn ml-auto d-table" ng-click="gotopage('#!/')"> Logout</button>
+      </div>
+   </body>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+   <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+   <!-- <script>
+      var app = angular.module("myApp",['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+      app.controller("myCtrl", function($scope){
+
+      });
+   </script> -->
+</html>

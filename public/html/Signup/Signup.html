@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Registration</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Free Web tutorials">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/bootstrap-grid.min.css"> -->
+</head>
+<body  ng-cloak>
+
+	<section class="w-100 h-100 login-pannel">
+		<div class="col-12 h-100 py-5 d-block d-sm-block d-md-flex d-lg-flex d-xl-flex align-items-center">
+			<div class="col-12 col-sm-12 col-md-3 col-lg-3 col-xl-3">
+				<h1 class="mb-5 text-center text-white font-small-caps">Online Test</h1>
+			</div>
+			<div class="col-12 col-sm-12 col-md-9 col-lg-9 col-xl-9">
+				<div class="col-8 px-5 py-4 bg-white z-depth-3 rounded m-auto">
+					<h4 class="mb-4 font-small-caps text-center">Registration</h4>
+					<div class="col-12 d-table mb-4">
+						<form>
+				      		<input type="file" ng-file-select="onFileSelect($files)" ng-model="imageSrc" class="position-absolute">
+				      		<i class="fas fa-paperclip icon_file position-absolute d-flex align-items-center justify-content-center border rounded-circle bg-white"></i>
+					    </form>
+					    <img ng-src="{{imageSrc}}" class="dummy_profile border float-right" />
+					</div>
+					<form>
+						<div class="form-group mb-4 position-relative">
+							<i class="fas fa-user position-absolute pl-3" style="top:0.275cm;"></i>
+							<input type="text" placeholder="Name"  ng-model="user.firstname" class="form-control pl-5" id="text">
+							{{reg_msg_firstname}}
+						</div>
+						<div class="form-group mb-4 position-relative">
+							<i class="fas fa-user position-absolute pl-3" style="top:0.275cm;"></i>
+							<input type="email" placeholder="Email" ng-model="user.email" class="form-control pl-5" id="email">
+							{{reg_msg_email}}
+						</div>
+						<div class="form-group mb-4 position-relative">
+							<i class="fas fa-lock position-absolute pl-3" style="top:0.275cm;"></i>
+							<input type="password" placeholder="Password" ng-model="user.password" class="form-control pl-5" id="pwd">
+							{{reg_msg_password}}
+						</div>
+						<div class="form-group mb-4 position-relative">
+							<i class="fas fa-user position-absolute pl-3" style="top:0.275cm;"></i>
+							<input type="number" placeholder="Mobile No" ng-model="user.mobileno" class="form-control pl-5" id="number">
+							{{reg_msg_mobileno}}
+						</div>
+						<div class="form-group form-group-box pl-2 mb-4">
+							<input type="checkbox" id="remember">
+  							<label for="remember" class="d-flex">Accept terms and conditions.</label>
+						</div>
+						{{registration_ress}}
+						<button type="submit" class="btn btn-primary m-auto d-table px-5 font-small-caps" ng-click="registation_save()">Sign In</button>
+						<a href="/" class="d-table m-auto w-fs-rem-8 mt-1">Login </a>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

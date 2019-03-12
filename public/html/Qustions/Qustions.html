@@ -1,0 +1,155 @@
+<div class="overflow-hidden">
+  <section class="col-12 h-100 p-0">
+    <nav class="navbar navbar-expand navbar-light border-bottom fixed-top z-depth-1 bg-primary">
+       <a class="navbar-brand font-small-caps text-white" href="#">Online Test</a>
+       <div class="ml-2">
+          <ul class="navbar-nav mr-auto">
+             <li class="nav-item active">
+                <a class="nav-link pointer openmenu_bar text-white" ng-click="toggleMenu();toggleicon =! toggleicon">
+                <i class="fas fa-bars w-fs-rem-15" ng-if="!toggleicon"></i>
+                <i class="fas fa-stream w-fs-rem-15" ng-if="toggleicon"></i>
+                </a>
+             </li>
+          </ul>
+       </div>
+       <div class="ml-auto">
+          <ul class="navbar-nav mr-auto">
+             <li class="nav-item active" ng-click="logout_fun()">
+                <a class="nav-link pointer openmenu_bar text-white">
+                <i class="fas fa-sign-out-alt w-fs-rem-15"></i>
+                </a>
+             </li>
+          </ul>
+       </div>
+    </nav>
+     <div class="col-12 h-100 p-0 d-flex" style="padding-top:1.5cm !important;">
+     <div ng-mouseover="hoverOpen()" ng-mouseleave="hoverClose()" class="aside-menubar collpase border-right z-depth-1 h-100 overflow-auto">
+        <ul class="list-unstyled">
+           <li class="d-flex align-items-center p-2">
+              <i class="fas fa-user-circle fa-3x"></i>
+              <div class="d-flex flex-column">
+                 <span class="ml-2">Priya Patil</span>
+                 <span class="ml-2 w-fs-rem-8">Online</span>
+              </div>
+              <md-button class="bg-primary text-white md-raised ml-auto mr-0" style="width:1cm;min-width:1cm;"><i class="fas fa-sign-out-alt"></i></md-button>
+           </li>
+           <li class="menu-hover">
+              <a class="nav-link p-2 d-flex align-items-center" href="#!/Qustions">
+              <i class="fas fa-plus-circle text-dark rounded-circle ml-1" style="padding:0.29cm;background-color:#d6d6d6"></i>
+              <span class="ml-2 text-dark">Add Questions</span>
+              </a>
+           </li>
+           <li class="menu-hover">
+              <a class="nav-link p-2 d-flex align-items-center" href="#!/Students">
+              <i class="fas fa-plus-circle text-dark rounded-circle ml-1" style="padding:0.29cm;background-color:#d6d6d6"></i>
+              <span class="ml-2 text-dark">All Students</span>
+              </a>
+           </li>
+           <li class="menu-hover">
+              <a class="nav-link p-2 d-flex align-items-center" href="#!/Report">
+              <i class="fas fa-plus-circle text-dark rounded-circle ml-1" style="padding:0.29cm;background-color:#d6d6d6"></i>
+              <span class="ml-2 text-dark">Report</span>
+              </a>
+           </li>
+        </ul>
+     </div>
+     <div class="w-100 h-100 pl-1 pr-0 py-2 right-panel overflow-auto">
+     <div class="w-100 p-0 d-flex align-items-center">
+        <h5 class="pl-2">Add Question and Answars </h5>
+        <button type="button" class="btn btn-primary ml-auto" data-toggle="modal" ng-click="going_to_add()" data-target="#add_question">Add Questions</button>
+     </div>
+     <div class="">
+        <div class="md-accordion border-bottom" ng-repeat="data in accordianData">
+           <md-toolbar class="bg-white text-dark border-0" ng-init="data.expanded = false" ng-click="collapseAll(data)">
+              <div class="md-toolbar-tools">
+                 <span class="w-fs-rem-8 pr-2">{{$index+1}}.</span>
+                 <h6 class="m-0"><span>{{data.question}}</span></h6>
+                 <div class="ml-auto">
+                    <md-button class="md-fab bg-secondary-color text-dark md-mini m-0" data-toggle="modal" ng-click='editQuestion(data)' data-target="#add_question">
+                       <i class="far fa-edit"></i>
+                    </md-button>
+                    <md-button class="md-fab bg-secondary-color text-dark md-mini m-0" data-toggle="modal" data-target="#delete_question" ng-click='deleteQestion(data)'>
+                       <i class="fas fa-trash"></i>
+                    </md-button>
+                 </div>
+                 <span ng-class="{expandCollapse:true, active:data.expanded}"></span>
+                 <i class="fas fa-angle-down"></i>
+                 <i class="fas fa-angle-up"></i>
+              </div>
+           </md-toolbar>
+           <div class="bg-white" ng-class="{dataContent:true, activeContent:data.expanded}">
+              <div class="d-flex col-12 p-0">
+                 <div class="col-12 p-0 text-justify"> correct answer : {{data.answer}}</div>
+              </div>
+           </div>
+           <div>
+           </div>
+        </div>
+     </div>
+     <!-- Modal -->
+     <div class="modal fade" id="add_question" tabindex="-1" role="dialog" aria-labelledby="add_question" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+           <div class="modal-content">
+              <div class="modal-header bg-primary text-white">
+                 <h5 class="modal-title" id="add_question">Add Question</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span class="text-white" aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                 <md-content layout-padding class="autoScroll bg-white p-4">
+                 <md-input-container class="col-12 p-0 m-0">
+                    <label class="w-100 m-0" style="left:0;">Question</label>
+                    <input type='text' ng-model='question.question'>
+                 </md-input-container>
+                 <div class="form-check">
+                    <input type="radio" ng-model="SingleMultiple" value="Single" ng-change="selctedOption('Single')">
+                    <label class="form-check-label p-0">Single Answer</label>
+                 </div>
+                 <input ng-show="showSingle" placeholder="Enter Answer" type='text' ng-model='question.answer'>
+
+                 <div class="form-check">
+                    <input type="radio" ng-model="SingleMultiple" value="Multiple" ng-change="selctedOption('Multiple')">
+                    <label class="form-check-label p-0">Multiple Answer</label>
+                 </div>
+
+                 <div ng-show="!showSingle">
+                   <input placeholder="Enter option A" type='text' ng-model='question.option1'>
+                   <input placeholder="Enter option B" type='text' ng-model='question.option2'>
+                   <input placeholder="Enter option C" type='text' ng-model='question.option3'>
+                   <input placeholder="Enter option D" type='text' ng-model='question.option4'>
+                   <input placeholder="Please enter currect answer such as a,b,c or d with small" type='text' ng-model='question.answer'>
+                </div>
+
+              <div class="modal-footer">
+                 <md-button class="bg-primary md-raised px-3 text-white" data-dismiss="modal" ng-click="saveQuestion()">Save</md-button>
+                 <md-button class="md-danger md-raised px-3" data-dismiss="modal">Cancel</md-button>
+              </div>
+           </div>
+        </div>
+      </div>
+     </div>
+
+     <div class="modal fade" id="delete_question" tabindex="-1" role="dialog" aria-labelledby="delete_question" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+           <div class="modal-content">
+              <div class="modal-header bg-primary text-white">
+                 <h5 class="modal-title" id="delete_question">Delete</h5>
+                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span class="text-white" aria-hidden="true">&times;</span>
+                 </button>
+              </div>
+              <div class="modal-body">
+                 <div class="col-12 py-4">
+                    Do you want to delete?
+                 </div>
+              </div>
+              <div class="modal-footer">
+                 <md-button class="bg-primary md-raised px-3 text-white"  data-dismiss="modal" ng-click='deleteQestionData()'>Delete</md-button>
+                 <md-button class="md-danger md-raised px-3" data-dismiss="modal" ng-click="cancel_the_update()">Cancel</md-button>
+              </div>
+           </div>
+        </div>
+     </div>
+  </section>
+</div>

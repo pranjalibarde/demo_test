@@ -1,0 +1,32 @@
+<div>
+   <section class="w-100 h-100 login-pannel">
+      <div class="col-12 h-100 py-5 d-block d-sm-block d-md-flex d-lg-flex d-xl-flex align-items-center">
+         <div class="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1 class="mb-5 text-center text-white font-small-caps">Portal</h1>
+         </div>
+         <div class="col-12 col-sm-12 col-md-8 col-lg-8 col-xl-8">
+            <div class="col-8 p-5 bg-white z-depth-3 rounded m-auto">
+               <h4 class="mb-4 font-small-caps text-center">Admin Login</h4>
+               <form>
+                  <div class="form-group mb-4 position-relative">
+                     <i class="fas fa-user position-absolute pl-3" style="top:0.275cm;"></i>
+                     <input type="email" placeholder="Username" class="form-control pl-5" id="email" ng-model="Logincontrol.Email">
+                  </div>
+                  <div class="form-group mb-4 position-relative">
+                     <i class="fas fa-lock position-absolute pl-3" style="top:0.275cm;"></i>
+                     <input type="password" placeholder="Password" class="form-control pl-5" id="pwd" ng-model="Logincontrol.Password">
+                  </div>
+                  <!-- <div class="form-group form-group-box pl-2 mb-4">
+                     <input type="checkbox" id="remember">
+                     <label for="remember" class="d-flex">Remember me</label>
+                  </div> -->
+                  <button type="submit" class="btn btn-primary m-auto d-table px-5 font-small-caps" ng-click="Logincontrol.Login();">Login</button>
+                  <span class="bg-dander" ng-if="Logincontrol.Message!=''">{{Logincontrol.Message}}</span>
+                  <a href="forget-password.html" class="d-table m-auto w-fs-rem-8 mt-1">Forgot Password</a>
+                  <a href="#!/Signup" class="d-table m-auto w-fs-rem-8 mt-1" >Sign Up</a>
+               </form>
+            </div>
+         </div>
+      </div>
+   </section>
+</div>

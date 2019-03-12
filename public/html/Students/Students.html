@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Angular Js</title>
+      <meta charset="UTF-8">
+
+   </head>
+   <body  ng-cloak class="overflow-hidden">
+      <section class="col-12 h-100 p-0">
+        <nav class="navbar navbar-expand navbar-light border-bottom fixed-top z-depth-1 bg-primary">
+           <a class="navbar-brand font-small-caps text-white" href="#">Online Test</a>
+           <div class="ml-2">
+              <ul class="navbar-nav mr-auto">
+                 <li class="nav-item active">
+                    <a class="nav-link pointer openmenu_bar text-white" ng-click="toggleMenu();toggleicon =! toggleicon">
+                    <i class="fas fa-bars w-fs-rem-15" ng-if="!toggleicon"></i>
+                    <i class="fas fa-stream w-fs-rem-15" ng-if="toggleicon"></i>
+                    </a>
+                 </li>
+              </ul>
+           </div>
+           <div class="ml-auto">
+              <ul class="navbar-nav mr-auto">
+                 <li class="nav-item active" ng-click="logout_fun()">
+                    <a class="nav-link pointer openmenu_bar text-white">
+                    <i class="fas fa-sign-out-alt w-fs-rem-15"></i>
+                    </a>
+                 </li>
+              </ul>
+           </div>
+        </nav>
+         <div class="col-12 h-100 p-0 d-flex" style="padding-top:1.5cm !important;">
+         <div ng-mouseover="hoverOpen()" ng-mouseleave="hoverClose()" class="aside-menubar collpase border-right z-depth-1 h-100 overflow-auto">
+            <ul class="list-unstyled">
+               <li class="d-flex align-items-center p-2">
+                  <i class="fas fa-user-circle fa-3x"></i>
+                  <div class="d-flex flex-column">
+                     <span class="ml-2">Priya Patil</span>
+                     <span class="ml-2 w-fs-rem-8">Online</span>
+                  </div>
+                  <md-button class="bg-primary text-white md-raised ml-auto mr-0" style="width:1cm;min-width:1cm;"><i class="fas fa-sign-out-alt"></i></md-button>
+               </li>
+               <li class="menu-hover">
+                  <a class="nav-link p-2 d-flex align-items-center" href="#!/Qustions">
+                  <i class="fas fa-plus-circle text-dark rounded-circle ml-1" style="padding:0.29cm;background-color:#d6d6d6"></i>
+                  <span class="ml-2 text-dark">Add Questions</span>
+                  </a>
+               </li>
+               <li class="menu-hover">
+                  <a class="nav-link p-2 d-flex align-items-center" href="#!/Students">
+                  <i class="fas fa-plus-circle text-dark rounded-circle ml-1" style="padding:0.29cm;background-color:#d6d6d6"></i>
+                  <span class="ml-2 text-dark">All Students</span>
+                  </a>
+               </li>
+               <li class="menu-hover">
+                  <a class="nav-link p-2 d-flex align-items-center" href="#!/Report">
+                  <i class="fas fa-plus-circle text-dark rounded-circle ml-1" style="padding:0.29cm;background-color:#d6d6d6"></i>
+                  <span class="ml-2 text-dark">Report</span>
+                  </a>
+               </li>
+            </ul>
+         </div>
+         <div class="w-100 h-100 pl-1 pr-0 py-2 right-panel overflow-auto">
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th>Profile</th>
+                     <th>Name</th>
+                     <th>Mobile No</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr ng-repeat="suser in users">
+                     <td class="p-1"><img src="images/no_profile.jpg" width="30"></td>
+                     <td class="p-1">{{suser.firstname}}</td>
+                     <td class="p-1">{{suser.mobileno}}</td>
+                  </tr>
+                  <!-- <tr>
+                     <td class="p-1"><img src="images/no_profile.jpg" width="30"></td>
+                     <td class="p-1">Priya Patil</td>
+                     <td class="p-1">1234567890</td>
+                  </tr>
+                  <tr>
+                     <td class="p-1"><img src="images/no_profile.jpg" width="30"></td>
+                     <td class="p-1">Priya Patil</td>
+                     <td class="p-1">1234567890</td>
+                  </tr> -->
+               </tbody>
+            </table>
+         </div>
+      </section>
+   </body>
+   <script src="js/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.4.1/js/mdb.min.js"></script>
+   <script src="js/bootstrap.min"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.6/angular-route.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-aria.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-messages.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+   <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-114/svg-assets-cache.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.js"></script>
+   <script>
+      var app = angular.module("myApp",['ngMaterial', 'ngMessages', 'material.svgAssetsCache']);
+      app.controller("myCtrl", function($scope){
+
+      	// Menu
+      	$scope.toggleMenu = function(){
+      		$('.aside-menubar').toggleClass('collpase').toggleClass('expand')
+      	}
+      	$scope.hoverOpen = function(){
+      		$('.aside-menubar').addClass('expand-hover')
+      	}
+      	$scope.hoverClose = function(){
+      		$('.right-panel').hover(function(){
+      			$('.aside-menubar').removeClass('expand-hover')
+      		});
+      		$('nav').hover(function(){
+      			$('.aside-menubar').removeClass('expand-hover')
+      		})
+      	}
+      });
+   </script>
+</html>

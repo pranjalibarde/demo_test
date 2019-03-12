@@ -1,0 +1,15 @@
+app.controller("Logincontroller", function($scope,$http,$window){
+	$scope.Logincontrol ={Email:'',Password:'',Message:''};
+	$scope.Logincontrol.Login = function(){
+		var req = {url:'/login_api',method:"POST",headers:{"content-Type": "application/json",},data:{Data:$scope.Logincontrol}}
+		$http(req).then(function(res) {
+			if(res.data.status==200){
+				$window.location.href = 'http://192.168.43.117:5555/#!/Qustions';
+			}else{
+				$scope.Logincontrol.Message=res.data.message;
+			}
+	    },function(err){
+	  	 $scope.Logincontrol.Message='Please Check Internet Connection';
+	   });
+	}
+});
